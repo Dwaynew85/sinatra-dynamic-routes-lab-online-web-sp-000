@@ -23,7 +23,19 @@ class App < Sinatra::Base
     "#{@word1} #{@word2} #{@word3} #{@word4} #{@word5}."
   end
 
-  get '/' do
+  get '/:operation/:number1/:number2' do
+    @number1 = params:[number1]
+    @number2 = params:[number2]
+    @operation = if params[:operation] == "add"
+      +
+    elsif params[:operation] == "subtract"
+      -
+    elsif params[:operation] == "multiply"
+      *
+    elsif params[:operation] == "divide"
+      /
+    end 
+    "#{@number1 @operation @number2}"
 
   end
 end
